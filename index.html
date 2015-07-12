@@ -2,23 +2,51 @@
 <head>
    <link rel="stylesheet" href="css/styles.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   <script src="js/main.js"></script>
    <script>var count=0;</script>
-
-<body>
-
-   <img src="images/catpic.jpg" id="catpic" />
-     <script> var source = $("#catpic").click(function() {
-
-     	count++;
-     	$("h3").text("click count: "+count);
-
-
-    });
-
-     </script>
 </head>
+<body>
+<!--
+    <div>
+   	    <span id="catname"></span>
+        <img src="images/catpic.jpg" id="catpic" />
+        <span>click count:  </span><span id="click-count">0<span>
+    </div>
 
-   <h3></h3>
+-->
+
+
+    <script>
+
+    for (var catCount =0 ; catCount < cats.length; catCount++) {
+     var theDiv = $("<div>");
+     var span0 = $("<span id='catname'>"+cats[catCount].name+"</span>");
+     var theImg = $("<img src='"+cats[catCount].imgStr+"' id='"+catCount.toString()+"'' />");
+     theImg.click(function(event) {
+
+
+
+     	cats[event.target.id].clickCount++;
+     	$("#click-count"+event.target.id).text(cats[event.target.id].clickCount);
+
+
+      });
+     var span1 = $("<span>click count:  </span>");
+     var span2 = $("<span id='click-count"+catCount.toString()+"'>0<span>");
+     theDiv.append(span0);
+     theDiv.append(theImg);
+     theDiv.append(span1);
+     theDiv.append(span2);
+     $("body").append(theDiv);
+
+    }
+
+
+    </script>
+
+
+
+
 </body>
 
 </html>
