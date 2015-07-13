@@ -36,14 +36,21 @@
       * Create the cat links
       */
      var theLI = $("<li>");
-     var theAnchor = $("<a href=''>"+cats[catCount].name+"</a>");
+     var theAnchor = $("<a href='' id='"+cats[catCount].name+"'>"+cats[catCount].name+"</a>");
+     theAnchor.click(function(event) { 
+         event.preventDefault();
+         alert(event.target.id);
+     }
+     );
      theLI.append(theAnchor);
 
      var catlist = $("#catlist");
      catlist.append(theLI);
      
 
-
+    }
+  //  Initialize with the first cat
+  for (var catCount =0 ; catCount < 1; catCount++) {
 
      var theDiv = $("<div>");
      var span0 = $("<span id='catname'>"+cats[catCount].name+"</span>");
