@@ -43,7 +43,7 @@
          // first clear the div
           var theIndex = new Number(event.target.id);
           //alert("current click index is "+cats[theIndex].clickCount);
-          $("#click-count"+theIndex).text(theIndex);
+          //$("#click-count"+theIndex).text(theIndex);
           $("#catcontent").empty();
           for (var catCount =theIndex ; catCount == theIndex; catCount++) {
 
@@ -61,6 +61,7 @@
           });
           var span1 = $("<span>click count:  </span>");
           var span2 = $("<span id='click-count"+catCount.toString()+"'>0<span>");
+		  span2.text(cats[catCount].clickCount);
           theDiv.append(span0);
           theDiv.append(theImg);
           theDiv.append(span1);
