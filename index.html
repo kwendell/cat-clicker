@@ -36,10 +36,38 @@
       * Create the cat links
       */
      var theLI = $("<li>");
-     var theAnchor = $("<a href='' id='"+cats[catCount].name+"'>"+cats[catCount].name+"</a>");
+     var theAnchor = $("<a href='' id='"+catCount+"'>"+cats[catCount].name+"</a>");
      theAnchor.click(function(event) { 
          event.preventDefault();
-         alert(event.target.id);
+         // insert cat setting code here
+         // first clear the div
+          var theIndex = new Number(event.target.id);
+          $("#catcontent").empty();
+          for (var catCount =theIndex ; catCount == theIndex; catCount++) {
+
+             var theDiv = $("<div>");
+             var span0 = $("<span id='catname'>"+cats[catCount].name+"</span>");
+             var theImg = $("<img src='"+cats[catCount].imgStr+"' id='"+catCount.toString()+"'' />");
+             theImg.click(function(event) {
+
+
+
+     	     cats[event.target.id].clickCount++;
+     	     $("#click-count"+event.target.id).text(cats[event.target.id].clickCount);
+
+
+          });
+          var span1 = $("<span>click count:  </span>");
+          var span2 = $("<span id='click-count"+catCount.toString()+"'>0<span>");
+          theDiv.append(span0);
+          theDiv.append(theImg);
+          theDiv.append(span1);
+          theDiv.append(span2);
+          $("#catcontent").append(theDiv);
+
+       }
+
+         // end insert
      }
      );
      theLI.append(theAnchor);
