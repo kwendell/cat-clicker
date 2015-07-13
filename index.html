@@ -1,6 +1,8 @@
 <html>
 <head>
    <link rel="stylesheet" href="css/styles.css">
+   <!-- load the bootstrap API lib -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
    <script src="js/main.js"></script>
    <script>var count=0;</script>
@@ -14,11 +16,35 @@
     </div>
 
 -->
+<div class="container">
+   <div class="row">
+      <div class="col-md-3">
+         <ul id="catlist"></ul>
+      </div>
+      <div class="col-md-6">
+         <div id="catcontent"></div>
+      </div>
+      </div>
+</div>
 
 
     <script>
 
     for (var catCount =0 ; catCount < cats.length; catCount++) {
+
+     /*
+      * Create the cat links
+      */
+     var theLI = $("<li>");
+     var theAnchor = $("<a href=''>"+cats[catCount].name+"</a>");
+     theLI.append(theAnchor);
+
+     var catlist = $("#catlist");
+     catlist.append(theLI);
+     
+
+
+
      var theDiv = $("<div>");
      var span0 = $("<span id='catname'>"+cats[catCount].name+"</span>");
      var theImg = $("<img src='"+cats[catCount].imgStr+"' id='"+catCount.toString()+"'' />");
@@ -37,7 +63,7 @@
      theDiv.append(theImg);
      theDiv.append(span1);
      theDiv.append(span2);
-     $("body").append(theDiv);
+     $("#catcontent").append(theDiv);
 
     }
 
