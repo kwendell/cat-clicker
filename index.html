@@ -42,6 +42,8 @@
          // insert cat setting code here
          // first clear the div
           var theIndex = new Number(event.target.id);
+          //alert("current click index is "+cats[theIndex].clickCount);
+          $("#click-count"+theIndex).text(theIndex);
           $("#catcontent").empty();
           for (var catCount =theIndex ; catCount == theIndex; catCount++) {
 
