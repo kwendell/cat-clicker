@@ -26,6 +26,7 @@
       </div>
       </div>
 </div>
+    <script src="js/retain.js"></script>
 
 
     <script>
@@ -37,7 +38,7 @@
       */
      var theLI = $("<li>");
      var theAnchor = $("<a href='' id='"+catCount+"'>"+cats[catCount].name+"</a>");
-     theAnchor.click(function(event) { 
+     theAnchor.click(function(event) {
          event.preventDefault();
          // insert cat setting code here
          // first clear the div
@@ -54,14 +55,14 @@
 
 
 
-     	     cats[event.target.id].clickCount++;
-     	     $("#click-count"+event.target.id).text(cats[event.target.id].clickCount);
+     	          cats[event.target.id].clickCount++;
+     	          $("#click-count"+event.target.id).text(cats[event.target.id].clickCount);
 
 
-          });
+             });
           var span1 = $("<span>click count:  </span>");
           var span2 = $("<span id='click-count"+catCount.toString()+"'>0<span>");
-		  span2.text(cats[catCount].clickCount);
+		      span2.text(cats[catCount].clickCount);
           theDiv.append(span0);
           theDiv.append(theImg);
           theDiv.append(span1);
@@ -75,17 +76,14 @@
      );
      theLI.append(theAnchor);
 
-     var catlist = $("#catlist");
-     catlist.append(theLI);
-     
+     //var catlist = $("#catlist");
+     //catlist.append(theLI);
+
 
     }
   //  Initialize with the first cat
-  for (var catCount =0 ; catCount < 1; catCount++) {
-
-     var theDiv = $("<div>");
-     var span0 = $("<span id='catname'>"+cats[catCount].name+"</span>");
-     var theImg = $("<img src='"+cats[catCount].imgStr+"' id='"+catCount.toString()+"'' />");
+  /*
+    var theImg = $("<img src='"+cats[catCount].imgStr+"' id='"+catCount.toString()+"'' />");
      theImg.click(function(event) {
 
 
@@ -95,15 +93,9 @@
 
 
       });
-     var span1 = $("<span>click count:  </span>");
-     var span2 = $("<span id='click-count"+catCount.toString()+"'>0<span>");
-     theDiv.append(span0);
-     theDiv.append(theImg);
-     theDiv.append(span1);
-     theDiv.append(span2);
-     $("#catcontent").append(theDiv);
 
-    }
+*/
+
 
 
     </script>
