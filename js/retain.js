@@ -1,22 +1,23 @@
 $(function(){
 
     var Cat = function(name,imgStr) {
-        this.name=name
+        this.name=name;
         this.imgStr=imgStr;
         this.clickCount=0;
     };
 
     var model = {
         init: function() {
-	        alert("initializing cats...");
+
             var cat1 = new Cat("Cat1","images/catpic.jpg");
             var cat2 = new Cat("Cat2","images/cat2.jpg");
             var cat3 = new Cat("Cat3","images/cat3.jpg");
             var cat4 = new Cat("Cat4","images/cat4.jpg");
             var cat5 = new Cat("Cat5","images/cat5.jpg");
 
-            this.cats = [cat1,cat2,cat3,cat4,cat5];
-        }
+            this.cats = [cat2,cat3,cat4,cat5];
+        },
+        showingIndex:-1
 
     };
 
@@ -30,6 +31,7 @@ $(function(){
         setCat: function(catIndex) {
              catView.render(catIndex);
              // clear the current content
+             model.showingIndex=catIndex;
 
 
 
@@ -41,7 +43,25 @@ $(function(){
             for (var i = 0 ; i< views.length ; i++) {
             views[i].init();
             }
+        },
+        showAdmin: function()  {
+            console.log("get cat info from model for cat "+model.showingIndex);
         }
+    };
+
+    var adminView ={
+        init : function() {
+            // add the button listener
+            // for the show admin function
+            var adminButton = $("#adminButton");
+
+            adminButton.click(function() {octopus.showAdmin();})
+
+        },
+        render : function()  {
+
+        }
+
     };
 
 
@@ -73,35 +93,35 @@ $(function(){
 
     var catView = {
         init: function() {
-            catView.render();
+            //catView.render(catIndex);
 
         },
-        render: function(catIndex){
-            alert("catView::render()");
+        render: function(catIndex) {
              $("#catcontent").empty();
               // set the content based on catIndex
 
-
+            model.showingIndex=catIndex;
              var theDiv = $("<div>");
-             var span0 = $("<span id='catname'>"+model.cats[catIndex].name+"</span>");
+             alert(catIndex);
+             var span0 = $("<h2 id='catname'>"+model.cats[catIndex].name+"</h2>");
              var theImg = $("<img src='"+model.cats[catIndex].imgStr+"' id='"+catIndex.toString()+"'' />");
              theImg.click(function(event) {
                   model.cats[catIndex].clickCount++;
-                  alert("looking for element "+"#click-count"+catIndex.toString());
+
                   $("#click-count"+catIndex.toString()).text(model.cats[catIndex].clickCount);
              });
-             var span1 = $("<span>click count:  </span>");
-             var span2 = $("<span id='click-count"+catIndex.toString()+"'>0<span>");
+             var span1 = $("<h2>click count:  </h2>");
+             var span2 = $("<h2 id='click-count"+catIndex.toString()+"'>0<h2");
              span2.text(model.cats[catIndex].clickCount);
              theDiv.append(span0);
             theDiv.append(theImg);
-            theDiv.append(span1);
+           // theDiv.append(span1);
             theDiv.append(span2);
             $("#catcontent").append(theDiv);
 
         }
     };
-   var views = [listView,catView];
+   var views = [listView,catView,adminView];
 
     octopus.init();
 });
