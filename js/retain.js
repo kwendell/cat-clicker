@@ -45,7 +45,13 @@ $(function(){
             }
         },
         showAdmin: function()  {
-            console.log("get cat info from model for cat "+model.showingIndex);
+            adminView.render();
+        },
+        getCurrentCatName : function() {
+            return model.cats[model.showingIndex].name;
+        },
+         getCurrentCatImageUrl : function() {
+            return model.cats[model.showingIndex].imgStr;
         }
     };
 
@@ -59,6 +65,16 @@ $(function(){
 
         },
         render : function()  {
+            console.log("adminView::render");
+            //  <div class="container" hidden="true" id="adminView">
+            var adminDiv = $("#adminView");
+            adminDiv.css("display","block");
+            // set the current cat name
+            console.log(octopus.getCurrentCatName());
+            //<input type="text" name="catName" label="name">
+            $("input[name='catName']").val(octopus.getCurrentCatName());
+            $("input[name='imageURL']").val(octopus.getCurrentCatImageUrl());
+
 
         }
 
