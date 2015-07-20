@@ -25,13 +25,14 @@ $(function(){
 
     var octopus = {
         incrementCatClickCount: function() {
-            alert("increment specific cat");
+
         },
 
         setCat: function(catIndex) {
              catView.render(catIndex);
              // clear the current content
              model.showingIndex=catIndex;
+
 
 
 
@@ -52,6 +53,16 @@ $(function(){
         },
          getCurrentCatImageUrl : function() {
             return model.cats[model.showingIndex].imgStr;
+        },
+        updateFromAdmin: function() {
+            // collect data from the form.
+           var vals = $("#admin-form").serializeArray();
+
+
+           model.cats[model.showingIndex].name=vals[0].value;
+           listView.render();
+
+
         }
     };
 
@@ -70,10 +81,14 @@ $(function(){
             var adminDiv = $("#adminView");
             adminDiv.css("display","block");
             // set the current cat name
-            console.log(octopus.getCurrentCatName());
+
             //<input type="text" name="catName" label="name">
+            console.log("setting to "+octopus.getCurrentCatName());
             $("input[name='catName']").val(octopus.getCurrentCatName());
-            $("input[name='imageURL']").val(octopus.getCurrentCatImageUrl());
+            $("input[name='imageURL']").val(octopus.
+                getCurrentCatImageUrl());
+
+            $("#updateButton").click(function() {octopus.updateFromAdmin();});
 
 
         }
@@ -83,11 +98,7 @@ $(function(){
 
     var listView = {
         init: function() {
-            listView.render();
-        },
-        render: function(){
-           // create list items to be appended
-            var catlist = $("#catlist");
+             var catlist = $("#catlist");
             for (var i = 0; i <model.cats.length;i++) {
                 var theLI = $("<li>");
                 var theAnchor = $("<a href='' id='"+i.toString()+"'>"+model.cats[i].name+"</a>");
@@ -102,6 +113,23 @@ $(function(){
                 theLI.append(theAnchor);
                 catlist.append(theLI);
             }
+            listView.render();
+        },
+        render: function(){
+           // update the text from the model
+
+                var theAnchors = $("li a");
+               // console.log(theAnchors[0].val);
+                for (var j=0;  j<theAnchors.length; j++) {
+                    $(theAnchors[j]).text(model.cats[j].name);
+
+                }
+                /*
+            for (var i = 0; i <theAnchors.length;i++) {
+                var theAnchors[i].val(model.cats[i].name);
+            }
+            */
+
 
 
         }
@@ -118,8 +146,8 @@ $(function(){
 
             model.showingIndex=catIndex;
              var theDiv = $("<div>");
-             alert(catIndex);
-             var span0 = $("<h2 id='catname'>"+model.cats[catIndex].name+"</h2>");
+
+             var span0 = $("<h2 id='catname'>"+model.cats[model.showingIndex].name+"</h2>");
              var theImg = $("<img src='"+model.cats[catIndex].imgStr+"' id='"+catIndex.toString()+"'' />");
              theImg.click(function(event) {
                   model.cats[catIndex].clickCount++;
